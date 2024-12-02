@@ -54,6 +54,18 @@ func printIntro(update *tgbotapi.Update) {
 
 }
 
+func getKeyboardRow(buttonText, buttonCode string) []tgbotapi.InlineKeyboardButton {
+	return tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonData(buttonText, buttonCode))
+}
+
+func askToPrintIntro() {
+	msg := tgbotapi.NewMessage(gChatId, "Во вступительных сообщениях ты можешь найти смысл данного бота, и правила игы. Что думаешь?")
+	msg.ReplyMarkup = tgbotapi.NewInlineKeyboardMarkup(
+		getKeyboardRow("Да, хочу почитать вступление", "read_intro"),
+		getKeyboardRow("Нет, вступление не нужно", "skip_intro"),
+	)
+}
+
 func main() {
 	var err error
 	//TODO: get gToken value
