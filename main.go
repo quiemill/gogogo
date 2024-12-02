@@ -61,9 +61,10 @@ func getKeyboardRow(buttonText, buttonCode string) []tgbotapi.InlineKeyboardButt
 func askToPrintIntro() {
 	msg := tgbotapi.NewMessage(gChatId, "Во вступительных сообщениях ты можешь найти смысл данного бота, и правила игы. Что думаешь?")
 	msg.ReplyMarkup = tgbotapi.NewInlineKeyboardMarkup(
-		getKeyboardRow("Да, хочу почитать вступление", "read_intro"),
-		getKeyboardRow("Нет, вступление не нужно", "skip_intro"),
+		getKeyboardRow(BUTTON_TEXT_PRINT_INTRO, BUTTON_CODE_PRINT_INTRO),
+		getKeyboardRow(BUTTON_TEXT_SKIP_INTRO, BUTTON_CODE_SKIP_INTRO),
 	)
+	gBot.Send(msg)
 }
 
 func main() {
